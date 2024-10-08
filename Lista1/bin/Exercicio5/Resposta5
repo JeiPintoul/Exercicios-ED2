@@ -1,0 +1,4 @@
+Analisando o tempo gasto nos algoritmos das atividades 3 e 4, percebe-se que o algoritmo de Busca Binária
+é consideravelmente mais veloz e eficiente caso o vetor fornecido já esteja ordenado, caso contrário, o
+algoritmo de ordenação necessário antes de se efetuar a Busca Binária acaba colocando um tempo a mais que
+somado com o tempo da própria Busca Binária torna a Busca Sequencial mais rápida, barata e eficiente.
