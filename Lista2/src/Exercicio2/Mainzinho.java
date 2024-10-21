@@ -13,7 +13,7 @@ public class Mainzinho {
             temposExecucao[i] = tabela(vetor);
             System.out.println("Iteração " + i + " concluida.");
         }
-        
+
         System.out.println("------------TABELA DE TEMPO DE EXECUÇÃO------------");
         System.out.printf("%-15s", "Iteração");
         for (String alg : algoritmos) {
