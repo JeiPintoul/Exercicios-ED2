@@ -9,13 +9,13 @@ public class BubbleSort {
             swapped = false;
             for (int i = 1; i < array.length; i++) {
                 if (array[i - 1] > array[i]) {
-                    // Swap elements
+
                     int temp = array[i - 1];
                     array[i - 1] = array[i];
                     array[i] = temp;
 
                     swapped = true;
-                    swapCounter++; // Conta o número de trocas
+                    swapCounter++;
                 }
             }
         } while (swapped);
