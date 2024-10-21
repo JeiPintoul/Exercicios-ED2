@@ -16,7 +16,7 @@ Função Hash --> h(k) = k mod 7
 Chaves: P E S Q U I S A
 
 1ª chave: P = 15 --> h(15) = 15 mod 7 = 1
-Adicionando a chave na lista encontrada na posição obtida pela função hash:
+Adicionando a chave P na lista encontrada na posição 1 obtida pela função hash:
 
 |__________________________________________________________|
 |   0-->                                                   |
@@ -29,7 +29,7 @@ Adicionando a chave na lista encontrada na posição obtida pela função hash:
 ____________________________________________________________
 
 2ª chave: E = 4 --> h(4) = 4 mod 7 = 4
-Adicionando a chave na lista encontrada na posição obtida pela função hash:
+Adicionando a chave E na lista encontrada na posição 4 obtida pela função hash:
 
 |__________________________________________________________|
 |   0-->                                                   |
@@ -42,7 +42,7 @@ Adicionando a chave na lista encontrada na posição obtida pela função hash:
 ____________________________________________________________
 
 3ª chave: S = 18 --> h(18) = 18 mod 7 = 4
-Adicionando a chave na lista encontrada na posição obtida pela função hash:
+Adicionando a chave S na lista encontrada na posição 4 obtida pela função hash:
 
 |__________________________________________________________|
 |   0-->                                                   |
@@ -55,7 +55,7 @@ Adicionando a chave na lista encontrada na posição obtida pela função hash:
 ____________________________________________________________
 
 4ª chave: Q = 16 --> h(16) = 16 mod 7 = 2
-Adicionando a chave na lista encontrada na posição obtida pela função hash:
+Adicionando a chave Q na lista encontrada na posição 2 obtida pela função hash:
 
 |__________________________________________________________|
 |   0-->                                                   |
@@ -65,4 +65,56 @@ Adicionando a chave na lista encontrada na posição obtida pela função hash:
 |   4-->  [E, S]                                           |
 |   5-->                                                   |
 |   6-->                                                   |
+____________________________________________________________
+
+5ª chave: U = 20 --> h(20) = 20 mod 7 = 6
+Adicionando a chave U na lista encontrada na posição 6 obtida pela função hash:
+
+|__________________________________________________________|
+|   0-->                                                   |
+|   1-->  [P]                                              |
+|   2-->  [Q]                                              |
+|   3-->                                                   |
+|   4-->  [E, S]                                           |
+|   5-->                                                   |
+|   6-->  [U]                                              |
+____________________________________________________________
+
+6ª chave: I = 8 --> h(8) = 8 mod 7 = 1
+Adicionando a chave I na lista encontrada na posição 1 obtida pela função hash:
+
+|__________________________________________________________|
+|   0-->                                                   |
+|   1-->  [P, I]                                           |
+|   2-->  [Q]                                              |
+|   3-->                                                   |
+|   4-->  [E, S]                                           |
+|   5-->                                                   |
+|   6-->  [U]                                              |
+____________________________________________________________
+
+7ª chave: S = 18 --> h(18) = 18 mod 7 = 4
+Adicionando a chave S na lista encontrada na posição 4 obtida pela função hash:
+
+|__________________________________________________________|
+|   0-->                                                   |
+|   1-->  [P, I]                                           |
+|   2-->  [Q]                                              |
+|   3-->                                                   |
+|   4-->  [E, S, S]                                        |
+|   5-->                                                   |
+|   6-->  [U]                                              |
+____________________________________________________________
+
+8ª chave: A = 0 --> h(0) = 0 mod 7 = 0
+Adicionando a chave A na lista encontrada na posição 0 obtida pela função hash:
+
+|__________________________________________________________|
+|   0-->  [A]                                              |
+|   1-->  [P, I]                                           |
+|   2-->  [Q]                                              |
+|   3-->                                                   |
+|   4-->  [E, S, S]                                        |
+|   5-->                                                   |
+|   6-->  [U]                                              |
 ____________________________________________________________

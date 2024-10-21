@@ -1,0 +1,65 @@
+c\ Mostrar a configuração da tabela após a inserção dos registros com as chaves: 40, 3.
+
+|__________________________________________________________|
+|   0-->    13                                             |
+|   1-->                                                   |
+|   2-->                                                   |
+|   3-->    10                                             |
+|   4-->                                                   |
+|   5-->    2                                              |
+|   6-->                                                   |
+|   7-->                                                   |
+|   8-->                                                   |
+|   9-->    APAGADO                                        |
+|   10-->   4                                              |    <-- Tabela Hash inicialmente.
+|   11-->   17                                             |
+|   12-->                                                  |
+|   13-->   35                                             |
+|   14-->                                                  |
+|   15-->                                                  |
+|   16-->                                                  |
+|   17-->   APAGADO                                        |
+|   18-->   32                                             |
+|   19-->                                                  |
+|   20-->                                                  |
+|   21-->                                                  |
+____________________________________________________________
+
+Função Hash Multiplicativa usando a proporção áurea A = (sqrt(5) - 1) / 2 = 0,6180
+Tamanho da tabela M = 22
+Função Hash: h(k) = trunc(((k * 0,6180) % 1) * 22)
+trunc = truncamento, ignorar a parte fracionária e retornar apenas a inteira
+
+Calculo das posições de todas as chaves fornecidas:
+
+1ª chave: h(40) = trunc(((25 * 0,6180) % 1) * 22) = 15
+
+2ª chave: h(3) = trunc(((11 * 0,6180) % 1) * 22) = 18
+
+Adicionando os valores na Tabela Hash em suas respectivas posições e aplicando
+endereçamento aberto nas colisões:
+
+|__________________________________________________________|
+|   0-->    13                                             |
+|   1-->                                                   |
+|   2-->                                                   |
+|   3-->    10                                             |
+|   4-->                                                   |
+|   5-->    2                                              |
+|   6-->                                                   |
+|   7-->                                                   |
+|   8-->                                                   |
+|   9-->    APAGADO                                        |
+|   10-->   4                                              |    <-- Tabela Hash após as inserções.
+|   11-->   17                                             |
+|   12-->   25                                             |
+|   13-->   35                                             |
+|   14-->                                                  |
+|   15-->   40 <--                                         |
+|   16-->                                                  |
+|   17-->   APAGADO                                        |
+|   18-->   32 <-- (Colisão ocorrida, colocando            |
+|   19-->   3  <--     o termo colidido na prox.           |
+|   20-->                 posição disponivel)              |
+|   21-->                                                  |
+____________________________________________________________

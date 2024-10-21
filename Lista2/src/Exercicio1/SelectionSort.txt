@@ -1,0 +1,20 @@
+[3 4 9 2 5 8 1] <--- Vetor inicial.
+
+[3 4 9 2 5 8 (1)] <--- Encontrando o menor elemento (1), que está na posição errada.
+[1 4 9 2 5 8 3] <--- Troca o 1 com o 3, na primeira posição.
+
+[1 4 9 (2) 5 8 3] <--- Menor elemento na sublista [4 9 2 5 8 3] é o 2.
+[1 2 9 4 5 8 3] <--- Troca o 2 com o 4.
+
+[1 2 9 4 5 8 (3)] <--- Menor elemento na sublista [9 4 5 8 3] é o 3.
+[1 2 3 4 5 8 9] <--- Troca o 3 com o 9.
+
+[1 2 3 (4) 5 8 9] <--- Menor elemento na sublista [4 5 8 9] já está na posição correta (4).
+
+[1 2 3 4 (5) 8 9] <--- Menor elemento na sublista [5 8 9] já está na posição correta (5).
+
+[1 2 3 4 5 (8) 9] <--- Menor elemento na sublista [8 9] já está na posição correta (8).
+
+[1 2 3 4 5 8 (9)] <--- O último elemento (9) já está na posição correta.
+
+[1 2 3 4 5 8 9] <--- Vetor ordenado.

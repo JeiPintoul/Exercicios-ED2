@@ -1,0 +1,111 @@
+a\ Mostrar a configuração da tabela após a inserção dos registros com as chaves: 4,
+  17, 13, 35, 25, 11, 2, 10, 32.
+
+|__________________________________________________________|
+|   0-->                                                   |
+|   1-->                                                   |
+|   2-->                                                   |
+|   3-->                                                   | <--- Tabela Hash inicialmente.
+|   4-->                                                   |
+|   5-->                                                   |
+|   6-->                                                   |
+|   7-->                                                   |
+|   8-->                                                   |
+|   9-->                                                   |
+|   10-->                                                  |
+____________________________________________________________
+
+Função Hash Multiplicativa usando a proporção áurea A = (sqrt(5) - 1) / 2 = 0,6180
+Tamanho da tabela M = 11
+Função Hash: h(k) = trunc(((k * 0,6180) % 1) * 11)
+trunc = truncamento, ignorar a parte fracionária e retornar apenas a inteira
+
+Calculo das posições de todas as chaves fornecidas:
+
+1ª chave: h(4) = trunc(((4 * 0,6180) % 1) * 11) = 5
+
+2ª chave: h(17) = trunc(((17 * 0,6180) % 1) * 11) = 5
+
+3ª chave: h(13) = trunc(((13 * 0,6180) % 1) * 11) = 0
+
+4ª chave: h(35) = trunc(((35 * 0,6180) % 1) * 11) = 6
+
+5ª chave: h(25) = trunc(((25 * 0,6180) % 1) * 11) = 4
+
+6ª chave: h(11) = trunc(((11 * 0,6180) % 1) * 11) = 8
+
+7ª chave: h(2) = trunc(((2 * 0,6180) % 1) * 11) = 2
+
+8ª chave: h(10) = trunc(((10 * 0,6180) % 1) * 11) = 1
+
+9ª chave: h(32) = trunc(((32 * 0,6180) % 1) * 11) = 8
+
+Adicionando as chaves em suas respectivas posições e na ordem correta e aplicando a técnica de endereçamento
+aberto quando necessário, obtém-se:
+
+|__________________________________________________________|
+|   0-->    13                                             |
+|   1-->    10                                             |
+|   2-->    2                                              |
+|   3-->                                                   |   <--- Tabelha Hash após as inserções.
+|   4-->    25                                             |
+|   5-->    4                                              |
+|   6-->    17                                             |
+|   7-->    35                                             |
+|   8-->    11                                             |
+|   9-->    32                                             |
+|   10-->                                                  |
+____________________________________________________________
+
+Como a tabela já está quase cheia, vamos fazer o resize:
+
+Dobrar o tamanho da tabela: 11 * 2 = 22
+Nova Função Hash: trunc(((k * 0,6180) % 1) * 22)
+trunc = truncamento, ignorar a parte fracionária e retornar apenas a inteira
+
+Refazendo os cálculos das chaves:
+
+1ª chave: h(4) = trunc(((4 * 0,6180) % 1) * 22) = 10
+
+2ª chave: h(17) = trunc(((17 * 0,6180) % 1) * 22) = 11
+
+3ª chave: h(13) = trunc(((13 * 0,6180) % 1) * 22) = 0
+
+4ª chave: h(35) = trunc(((35 * 0,6180) % 1) * 22) = 13
+
+5ª chave: h(25) = trunc(((25 * 0,6180) % 1) * 22) = 9
+
+6ª chave: h(11) = trunc(((11 * 0,6180) % 1) * 22) = 17
+
+7ª chave: h(2) = trunc(((2 * 0,6180) % 1) * 22) = 5
+
+8ª chave: h(10) = trunc(((10 * 0,6180) % 1) * 22) = 3
+
+9ª chave: h(32) = trunc(((32 * 0,6180) % 1) * 22) = 17
+
+Adicionando os valores na nova Tabela Hash de 22 posições:
+
+|__________________________________________________________|
+|   0-->    13                                             |
+|   1-->                                                   |
+|   2-->                                                   |
+|   3-->    10                                             |
+|   4-->                                                   |
+|   5-->    2                                              |
+|   6-->                                                   |
+|   7-->                                                   |
+|   8-->                                                   |
+|   9-->    25                                             |
+|   10-->   4                                              |
+|   11-->   17                                             |
+|   12-->                                                  |
+|   13-->   35                                             |
+|   14-->                                                  |
+|   15-->                                                  |
+|   16-->                                                  |
+|   17-->   11 <-- (Colisão ocorrida, colocando            |
+|   18-->   32 <--     o termo colidido na prox.           |
+|   19-->                     posição)                     |
+|   20-->                                                  |
+|   21-->                                                  |
+____________________________________________________________

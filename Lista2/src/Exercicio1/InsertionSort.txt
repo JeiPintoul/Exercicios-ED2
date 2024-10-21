@@ -1,0 +1,46 @@
+[3 4 9 2 5 8 1] <--- Vetor inicial
+
+[3 (4) 9 2 5 8 1] <--- Termo 4 já está na posição correta, segue para o próximo.
+
+[3 4 (9) 2 5 8 1] <--- Termo 9 já está na posição correta, segue para o próximo.
+
+[3 4 9 (2) 5 8 1] <--- Termo 2 encontrado na posição errada, movendo 9, 4 e 3 para a direita.
+
+[3 4 9 9 5 8 1] <--- Movendo 9.
+
+[3 4 4 9 5 8 1] <--- Movendo 4.
+
+[3 3 4 9 5 8 1] <--- Movendo 3.
+
+[2 3 4 9 5 8 1] <--- Termo 2 inserido na sua devida posição.
+
+[2 3 4 9 (5) 8 1] <--- Termo 5 encontrado na posição errada, movendo 9 para a direita.
+
+[2 3 4 9 9 8 1] <--- Movendo 9.
+
+[2 3 4 5 9 8 1] <--- Termo 5 inserido na sua devida posição.
+
+[2 3 4 5 9 (8) 1] <--- Termo 8 encontrado na posição errada, movendo 9 para a direita.
+
+[2 3 4 5 9 9 1] <--- Movendo 9.
+
+[2 3 4 5 8 9 1] <--- Termo 8 inserido na sua devida posição.
+
+[2 3 4 5 8 9 (1)] <--- Termo 1 encontrado na posição errada, movendo 9, 8, 5, 4, 3 e 2
+                       para a direita.
+
+[2 3 4 5 8 9 9] <--- Movendo 9.
+
+[2 3 4 5 8 8 9] <--- Movendo 8.
+
+[2 3 4 5 5 8 9] <--- Movendo 5.
+
+[2 3 4 4 5 8 9] <--- Movendo 4.
+
+[2 3 3 4 5 8 9] <--- Movendo 3.
+
+[2 2 3 4 5 8 9] <--- Movendo 2.
+
+[1 2 3 4 5 8 9] <--- Termo 1 inserido na sua devida posição.
+
+[1 2 3 4 5 8 9] <--- Vetor ordenado.

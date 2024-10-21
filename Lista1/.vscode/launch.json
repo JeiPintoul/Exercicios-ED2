@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Exercicio9.Main",
+            "projectName": "Lista1_6d68f7b"
+        },
+        {
+            "type": "java",
+            "name": "NumRecorrencias",
+            "request": "launch",
+            "mainClass": "Exercicio2.NumRecorrencias",
+            "projectName": "Lista1_6d68f7b"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

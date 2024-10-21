@@ -1,0 +1,65 @@
+[3 4 9 2 5 8 1] <--- Vetor inicial
+
+Escolhendo o pivô.
+Pivô = 1 (último elemento).
+
+Comparando cada elemento com o pivô (1):
+3 > 1 → Não troca.
+4 > 1 → Não troca.
+9 > 1 → Não troca.
+2 > 1 → Não troca.
+5 > 1 → Não troca.
+8 > 1 → Não troca.
+Troca o pivô (1) com o primeiro elemento maior que ele (3):
+[1 4 9 2 5 8 3] <--- O pivô (1) está na posição correta.
+
+Sublistas: [ ] | 1 | [4 9 2 5 8 3]
+
+Aplicando QuickSort na sublista [4 9 2 5 8 3].
+Pivô = 3.
+
+Comparando cada elemento com o pivô (3):
+4 > 3 → Não troca.
+9 > 3 → Não troca.
+2 < 3 → Troca 2 com 4 → [1 2 9 4 5 8 3].
+5 > 3 → Não troca.
+8 > 3 → Não troca.
+Troca o pivô (3) com o primeiro elemento maior que ele (9):
+[1 2 3 4 5 8 9] <--- O pivô (3) está na posição correta.
+
+Sublistas: [2] | 3 | [4 5 8 9]
+
+Aplicando QuickSort na sublista [4 5 8 9].
+Pivô = 9.
+
+Comparando cada elemento com o pivô (9):
+4 < 9 → Troca 4 com 4 (sem mudanças).
+5 < 9 → Troca 5 com 5 (sem mudanças).
+8 < 9 → Troca 8 com 8 (sem mudanças).
+Troca o pivô (9) com ele mesmo:
+[1 2 3 4 5 8 9] <--- O pivô (9) está na posição correta.
+
+Sublistas: [4 5 8] | 9 | [ ]
+
+Aplicando QuickSort na sublista [4 5 8].
+Pivô = 8.
+
+Comparando cada elemento com o pivô (8):
+4 < 8 → Troca 4 com 4 (sem mudanças).
+5 < 8 → Troca 5 com 5 (sem mudanças).
+Troca o pivô (8) com ele mesmo:
+[1 2 3 4 5 8 9] <--- O pivô (8) está na posição correta.
+
+Sublistas: [4 5] | 8 | [ ]
+
+Aplicando QuickSort na sublista [4 5].
+Pivô = 5.
+
+Comparando 4 com o pivô (5):
+4 < 5 → Troca 4 com 4 (sem mudanças).
+Troca o pivô (5) com ele mesmo:
+[1 2 3 4 5 8 9] <--- O pivô (5) está na posição correta.
+
+Sublistas: [4] | 5 | [ ]
+
+[1 2 3 4 5 8 9] <--- Vetor ordenado.
