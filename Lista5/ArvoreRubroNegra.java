@@ -1,138 +1,155 @@
 public class ArvoreRubroNegra {
     private No raiz; // Raiz da árvore
+    private final No NULO; // Nó "sentinela" para folhas nulas
 
     public ArvoreRubroNegra() {
-        raiz = null;
+        NULO = new No(0, Cor.PRETO); // Nó sentinela representando null
+        raiz = NULO;
     }
 
     // Método principal para inserir um valor na árvore
     public void inserir(int valor) {
-        No novoNo = new No(valor, Cor.VERMELHO); // Novo nó é sempre vermelho
-        raiz = inserirBST(raiz, novoNo); // Inserção como em uma árvore binária normal
-        corrigirInsercao(novoNo); // Corrigir propriedades Rubro-Negra
-    }
+        No novoNo = new No(valor, Cor.VERMELHO);
+        novoNo.esquerda = NULO;
+        novoNo.direita = NULO;
 
-    // Inserção padrão de árvore binária de busca
-    private No inserirBST(No raiz, No novoNo) {
-        if (raiz == null) {
-            return novoNo;
+        No atual = raiz;
+        No pai = null;
+
+        // Encontrar a posição para inserir o novo nó
+        while (atual != NULO) {
+            pai = atual;
+            if (valor < atual.valor) {
+                atual = atual.esquerda;
+            } else {
+                atual = atual.direita;
+            }
         }
 
-        if (novoNo.valor < raiz.valor) {
-            raiz.esquerda = inserirBST(raiz.esquerda, novoNo);
-            raiz.esquerda.pai = raiz;
-        } else if (novoNo.valor > raiz.valor) {
-            raiz.direita = inserirBST(raiz.direita, novoNo);
-            raiz.direita.pai = raiz;
+        // Configurar o pai do novo nó
+        novoNo.pai = pai;
+
+        if (pai == null) {
+            raiz = novoNo; // Novo nó será a raiz
+        } else if (valor < pai.valor) {
+            pai.esquerda = novoNo;
+        } else {
+            pai.direita = novoNo;
         }
-        return raiz;
+
+        // Ajustar as propriedades rubro-negras
+        corrigirInsercao(novoNo);
     }
 
     // Corrigir a árvore após a inserção
     private void corrigirInsercao(No no) {
-        while (no != raiz && no.pai.cor == Cor.VERMELHO) {
-            No pai = no.pai;
-            No avo = pai.pai;
+        while (no.pai != null && no.pai.cor == Cor.VERMELHO) {
+            No avo = no.pai.pai;
 
-            // Caso A: Pai é filho esquerdo do avô
-            if (pai == avo.esquerda) {
+            if (no.pai == avo.esquerda) { // Pai é filho esquerda do avô
                 No tio = avo.direita;
 
-                // Caso 1: Tio é vermelho (recolorir)
-                if (tio != null && tio.cor == Cor.VERMELHO) {
-                    pai.cor = Cor.PRETO;
+                // Caso 1: O tio é vermelho
+                if (tio.cor == Cor.VERMELHO) {
+                    no.pai.cor = Cor.PRETO;
                     tio.cor = Cor.PRETO;
                     avo.cor = Cor.VERMELHO;
                     no = avo;
                 } else {
-                    // Caso 2: Nó é filho direito (rotacionar para a esquerda)
-                    if (no == pai.direita) {
-                        no = pai;
+                    // Caso 2: Nó é filho direita
+                    if (no == no.pai.direita) {
+                        no = no.pai;
                         rotacionarEsquerda(no);
                     }
-                    // Caso 3: Nó é filho esquerdo (rotacionar para a direita)
-                    pai.cor = Cor.PRETO;
+
+                    // Caso 3: Nó é filho esquerda
+                    no.pai.cor = Cor.PRETO;
                     avo.cor = Cor.VERMELHO;
                     rotacionarDireita(avo);
                 }
-            } else { // Caso B: Pai é filho direito do avô
+            } else { // Pai é filho direita do avô
                 No tio = avo.esquerda;
 
-                // Caso 1: Tio é vermelho (recolorir)
-                if (tio != null && tio.cor == Cor.VERMELHO) {
-                    pai.cor = Cor.PRETO;
+                // Caso 1: O tio é vermelho
+                if (tio.cor == Cor.VERMELHO) {
+                    no.pai.cor = Cor.PRETO;
                     tio.cor = Cor.PRETO;
                     avo.cor = Cor.VERMELHO;
                     no = avo;
                 } else {
-                    // Caso 2: Nó é filho esquerdo (rotacionar para a direita)
-                    if (no == pai.esquerda) {
-                        no = pai;
+                    // Caso 2: Nó é filho esquerda
+                    if (no == no.pai.esquerda) {
+                        no = no.pai;
                         rotacionarDireita(no);
                     }
-                    // Caso 3: Nó é filho direito (rotacionar para a esquerda)
-                    pai.cor = Cor.PRETO;
+
+                    // Caso 3: Nó é filho direita
+                    no.pai.cor = Cor.PRETO;
                     avo.cor = Cor.VERMELHO;
                     rotacionarEsquerda(avo);
                 }
             }
         }
-        raiz.cor = Cor.PRETO; // A raiz é sempre preta
+
+        raiz.cor = Cor.PRETO; // A raiz deve sempre ser preta
     }
+    
 
     // Rotação para a esquerda
     private void rotacionarEsquerda(No no) {
-        No filhoDireita = no.direita;
-        no.direita = filhoDireita.esquerda;
+        No direita = no.direita;
+        no.direita = direita.esquerda;
 
-        if (filhoDireita.esquerda != null) {
-            filhoDireita.esquerda.pai = no;
+        if (direita.esquerda != NULO) {
+            direita.esquerda.pai = no;
         }
 
-        filhoDireita.pai = no.pai;
+        direita.pai = no.pai;
 
         if (no.pai == null) {
-            raiz = filhoDireita;
+            raiz = direita;
         } else if (no == no.pai.esquerda) {
-            no.pai.esquerda = filhoDireita;
+            no.pai.esquerda = direita;
         } else {
-            no.pai.direita = filhoDireita;
+            no.pai.direita = direita;
         }
 
-        filhoDireita.esquerda = no;
-        no.pai = filhoDireita;
+        direita.esquerda = no;
+        no.pai = direita;
     }
+    
 
     // Rotação para a direita
     private void rotacionarDireita(No no) {
-        No filhoEsquerda = no.esquerda;
-        no.esquerda = filhoEsquerda.direita;
+        No esquerda = no.esquerda;
+        no.esquerda = esquerda.direita;
 
-        if (filhoEsquerda.direita != null) {
-            filhoEsquerda.direita.pai = no;
+        if (esquerda.direita != NULO) {
+            esquerda.direita.pai = no;
         }
 
-        filhoEsquerda.pai = no.pai;
+        esquerda.pai = no.pai;
 
         if (no.pai == null) {
-            raiz = filhoEsquerda;
-        } else if (no == no.pai.esquerda) {
-            no.pai.esquerda = filhoEsquerda;
+            raiz = esquerda;
+        } else if (no == no.pai.direita) {
+            no.pai.direita = esquerda;
         } else {
-            no.pai.direita = filhoEsquerda;
+            no.pai.esquerda = esquerda;
         }
 
-        filhoEsquerda.direita = no;
-        no.pai = filhoEsquerda;
+        esquerda.direita = no;
+        no.pai = esquerda;
     }
 
     // Exibição em ordem para depuração
     public void emOrdem() {
         emOrdemHelper(raiz);
+        System.out.println("\n");
     }
 
     private void emOrdemHelper(No no) {
-        if (no != null) {
+        if (no != NULO) {
             emOrdemHelper(no.esquerda);
             System.out.print(no.valor + "(" + no.cor + ") ");
             emOrdemHelper(no.direita);
@@ -142,7 +159,7 @@ public class ArvoreRubroNegra {
         // Método para remover um valor da árvore
         public void remover(int valor) {
             No no = buscarNo(raiz, valor);
-            if (no == null) {
+            if (no == NULO) {
                 System.out.println("Valor " + valor + " não encontrado na árvore.");
                 return;
             }
@@ -151,7 +168,7 @@ public class ArvoreRubroNegra {
     
         // Buscar o nó pelo valor
         private No buscarNo(No raiz, int valor) {
-            if (raiz == null || raiz.valor == valor) {
+            if (raiz == NULO || raiz.valor == valor) {
                 return raiz;
             }
             if (valor < raiz.valor) {
@@ -168,10 +185,10 @@ public class ArvoreRubroNegra {
             Cor corOriginal = no.cor;
     
             // Caso 1: O nó tem no máximo um filho
-            if (no.esquerda == null) {
+            if (no.esquerda == NULO) {
                 fixNode = no.direita;
                 substituirNo(no, no.direita);
-            } else if (no.direita == null) {
+            } else if (no.direita == NULO) {
                 fixNode = no.esquerda;
                 substituirNo(no, no.esquerda);
             } else {
@@ -218,7 +235,7 @@ public class ArvoreRubroNegra {
     
         // Encontra o nó com o menor valor na subárvore
         private No minimo(No no) {
-            while (no.esquerda != null) {
+            while (no.esquerda != NULO) {
                 no = no.esquerda;
             }
             return no;
